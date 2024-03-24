@@ -1,0 +1,19 @@
+# build
+dist/
+
+# tests
+coverage/
+.nyc_output/
+
+# node
+node_modules
+.eslintcache
+
+# JetBrains IDEs
+.idea
+
+# OS X
+.DS_Store
+
+# tap reports
+.tap
