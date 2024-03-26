@@ -96,7 +96,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "{{XXX}}",
+							"value": "",
 							"type": "string"
 						}
 					]
