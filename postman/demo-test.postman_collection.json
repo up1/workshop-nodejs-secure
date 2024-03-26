@@ -1,0 +1,128 @@
+{
+	"info": {
+		"_postman_id": "36a8a4f5-d419-48fc-8385-44c9f08b5f4f",
+		"name": "demo-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/Secure-code~3ee96c95-32b9-438d-98a4-b8598c89f017/collection/1453931-36a8a4f5-d419-48fc-8385-44c9f08b5f4f?action=share&source=collection_link&creator=1453931"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Schema is valid\", function () {",
+							"  var schema = {",
+							"    type: \"object\",",
+							"    properties: {",
+							"      id: { type: \"number\" },",
+							"      username: { type: \"string\" },",
+							"      email: { type: \"string\", format: \"email\" },",
+							"      firstName: { type: \"string\" },",
+							"      lastName: { type: \"string\" },",
+							"      gender: { type: \"string\" },",
+							"      image: { type: \"string\" },",
+							"      token: { type: \"string\" }",
+							"    },",
+							"    required: [\"id\", \"username\", \"email\", \"firstName\", \"lastName\", \"gender\", \"image\", \"token\"]",
+							"  };",
+							"",
+							"  var response = pm.response.json();",
+							"  pm.expect(tv4.validate(response, schema)).to.be.true;",
+							"});",
+							"",
+							"",
+							"var jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"XXX\", jsonData.token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"kminchelle\",\n    \"password\": \"0lelplR\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dummyjson.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"dummyjson",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get current auth user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{XXX}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://dummyjson.com/auth/me",
+					"protocol": "https",
+					"host": [
+						"dummyjson",
+						"com"
+					],
+					"path": [
+						"auth",
+						"me"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "XXX",
+			"value": ""
+		}
+	]
+}
