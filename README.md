@@ -1,5 +1,5 @@
-# The OWASP Top Ten Workshop
-Workshop based on the [OWASP Top Ten](https://owasp.org/www-project-top-ten/) security vulnerabilities
+# The OWASP Top Ten Workshop !!
+Workshop based on the [OWASP Top Ten](https://owasp.org/www-project-top-ten/) security vulnerabilities 
 
 ## Requirements
 - NodeJS
